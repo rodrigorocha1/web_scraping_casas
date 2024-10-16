@@ -28,7 +28,7 @@ class WebScrapingSelenium:
             navegador (WebDriver): Recebe o navegador
         """
         WebDriverWait(navegador, 10).until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="cookie-notifier-cta"]'))).click()
+            (By.ID, 'adopt-accept-all-button'))).click()
 
     def abrir_navegador(self) -> WebDriver:
         navegador = webdriver.Chrome(service=self.__servico)

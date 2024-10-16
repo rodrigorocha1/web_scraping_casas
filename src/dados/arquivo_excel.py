@@ -5,17 +5,12 @@ import os
 
 
 class ArquivoExcel(Arquivo[Workbook]):
-    def __init__(self, nome_aba: str):
-        """init para arquivo excel
-
-        Args:
-            nome_aba (str): nome da aba da planilha
-        """
+    def __init__(self, nome_pasta_amarzenamento: str, nome_arquivo: str, nome_aba: str):
+        super().__init__(nome_pasta_amarzenamento, nome_arquivo)
         self.__planilha = Workbook()
         self.__nome_aba = nome_aba
-        super().__init__()
 
-    def __criar_cabecalho(self, dados: Dict[str, Union[str, int]], aba: worksheet) -> List[str]:
+    def __criar_cabecalho(self, dados: List[Dict[str, Union[str, int]]], aba: worksheet) -> List[str]:
         """Métod para criar o cabeçalho das colunas
 
         Args:
@@ -25,12 +20,12 @@ class ArquivoExcel(Arquivo[Workbook]):
         Returns:
             List[str]: Lista de cabeçalhos
         """
-        cabecalhos = list(dados.keys())
+        cabecalhos = list(dados[0].keys())
         aba.append(cabecalhos)
 
         return cabecalhos
 
-    def salvar_dados(self, dados: Dict[str, Union[str, int]]):
+    def salvar_dados(self, dados: List[Dict[str, Union[str, int]]]):
         """Método para salvar os dados da planilha
 
         Args:
@@ -41,13 +36,13 @@ class ArquivoExcel(Arquivo[Workbook]):
 
         cabecalhos = self.__criar_cabecalho(dados=dados, aba=aba)
         for linha in dados:
-
+            print(linha)
             valores = [linha[coluna] for coluna in cabecalhos]
             aba.append(valores)
         self.__planilha.save(self._caminho_arquivo)
         self.__planilha.close()
 
-    def atualizar_dados(self, dados: Dict[str, Union[str, int]]):
+    def atualizar_dados(self, dados: List[Dict[str, Union[str, int]]]):
         """Método para atualizar dados da planilha
 
         Args:
@@ -70,11 +65,3 @@ class ArquivoExcel(Arquivo[Workbook]):
 
         workbook.save(self._caminho_arquivo)
         workbook.close()
-
-    def verificar_arquivo(self) -> bool:
-        """Método para verificar se o arquivo existe
-
-        Returns:
-            bool: verdadeiro se o arquivo existe, falso caso contrário
-        """
-        return os.path.exists(self._caminho_arquivo)
