@@ -3,6 +3,7 @@ from src.dados.arquivo import Arquivo
 from src.dados.arquivo_excel import ArquivoExcel
 from src.service.servico_selenium import WebScrapingSelenium
 from time import sleep
+from datetime import datetime
 
 
 class WebScrapingPipeline:
@@ -15,6 +16,7 @@ class WebScrapingPipeline:
     def rodar_web_scraping(self):
         navegador = self.__servico_web_scraping.abrir_navegador()
         flag_loop = True
+        i = 1
         while flag_loop:
 
             sleep(4)
@@ -28,7 +30,10 @@ class WebScrapingPipeline:
                     'quartos': dados[5].text,
                     'banheiros': dados[6].text,
                     'garagens': dados[7].text,
-                    'tipo_imovel': self.__tipo_imovel
+                    'tipo_imovel': self.__tipo_imovel,
+                    'pagina': i,
+                    'data_hora_coleta': datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+
                 }]
                 if not self.__operacao_dados.verificar_arquivo():
                     self.__operacao_dados.salvar_dados(dados=dado)
@@ -37,6 +42,7 @@ class WebScrapingPipeline:
 
             flag_loop = self.__servico_web_scraping.executar_paginacao(
                 navegador=navegador)
+            i += 1
         self.__servico_web_scraping.fechar_navegador(navegador=navegador)
 
 

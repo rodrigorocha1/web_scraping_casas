@@ -36,7 +36,6 @@ class ArquivoExcel(Arquivo[Workbook]):
 
         cabecalhos = self.__criar_cabecalho(dados=dados, aba=aba)
         for linha in dados:
-            print(linha)
             valores = [linha[coluna] for coluna in cabecalhos]
             aba.append(valores)
         self.__planilha.save(self._caminho_arquivo)
