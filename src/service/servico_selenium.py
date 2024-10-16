@@ -17,11 +17,16 @@ logging.basicConfig(format="%(levelname)s | %(asctime)s | %(message)s",
 
 class WebScrapingSelenium:
 
-    def __init__(self, url: str, tipo_imovel: str):
+    def __init__(self, url: str):
         self.__url = url
         self.__servico = Service(ChromeDriverManager().install())
 
     def __clicar_cookie(self, navegador: WebDriver):
+        """Método para clicar no cookie
+
+        Args:
+            navegador (WebDriver): Recebe o navegador
+        """
         WebDriverWait(navegador, 10).until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="cookie-notifier-cta"]'))).click()
 
@@ -33,6 +38,17 @@ class WebScrapingSelenium:
         return navegador
 
     def extrair_dados(self, navegador: WebDriver) -> Iterator[Tuple]:
+        """Método para extrair dados
+
+        Args:
+            navegador (WebDriver): Navegador
+
+        Returns:
+            _type_: Um iteravel
+
+        Yields:
+            Iterator[Tuple]: Um iteravel
+        """
 
         urls = navegador.find_elements(
             By.CLASS_NAME, 'property-card__content-link')
@@ -61,6 +77,14 @@ class WebScrapingSelenium:
         return zip(urls, nome_apartamentos, precos, enderecos_apartamentos, metragems, quartos, banheiros, garagens)
 
     def executar_paginacao(self, navegador: WebDriver) -> bool:
+        """Executar a páginação
+
+        Args:
+            navegador (WebDriver): navegdor
+
+        Returns:
+            bool: verdadeiro se o botão existe, falso caso contrário
+        """
         try:
             navegador.find_element(
                 By.XPATH,  '//*[@id="js-site-main"]/div[2]/div[1]/section/div[2]/div[2]/div/ul/li[9]/button').click()
@@ -71,4 +95,9 @@ class WebScrapingSelenium:
             logging.critical(f"A critical message {e}")
 
     def fechar_navegador(self, navegador: WebDriver):
+        """Método para fechar o navegador
+
+        Args:
+            navegador (WebDriver): recebe o navegador
+        """
         navegador.quit()
