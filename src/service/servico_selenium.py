@@ -1,6 +1,7 @@
 from typing import Iterator, Tuple
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.webdriver import WebDriver
@@ -37,7 +38,7 @@ class WebScrapingSelenium:
         self.__clicar_cookie(navegador=navegador)
         return navegador
 
-    def extrair_dados(self, navegador: WebDriver) -> Iterator[Tuple]:
+    def extrair_dados(self, navegador: WebDriver) -> Iterator[Tuple[WebElement]]:
         """Método para extrair dados
 
         Args:
