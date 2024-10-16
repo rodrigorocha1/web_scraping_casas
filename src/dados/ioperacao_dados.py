@@ -8,5 +8,5 @@ class IoperacaoDados(ABC):
         pass
 
     @abstractmethod
-    def atualizad_dados(self, dados: Tuple):
+    def atualizar_dados(self, dados: Tuple):
         pass
