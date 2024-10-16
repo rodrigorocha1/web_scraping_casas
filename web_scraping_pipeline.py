@@ -16,6 +16,8 @@ class WebScrapingPipeline:
         navegador = self.__servico_web_scraping.abrir_navegador()
         flag_loop = True
         while flag_loop:
+
+            sleep(4)
             for dados in self.__servico_web_scraping.extrair_dados(navegador=navegador):
                 dado = [{
                     'url': dados[0].get_attribute('href'),
@@ -32,7 +34,6 @@ class WebScrapingPipeline:
                     self.__operacao_dados.salvar_dados(dados=dado)
                 else:
                     self.__operacao_dados.atualizar_dados(dados=dado)
-            sleep(4)
 
             flag_loop = self.__servico_web_scraping.executar_paginacao(
                 navegador=navegador)
