@@ -4,7 +4,7 @@ from openpyxl import Workbook, load_workbook, worksheet
 import os
 
 
-class ArquivoExcel(Arquivo):
+class ArquivoExcel(Arquivo[Workbook]):
     def __init__(self, nome_aba: str):
         """init para arquivo excel
 

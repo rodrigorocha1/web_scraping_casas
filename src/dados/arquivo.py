@@ -1,10 +1,13 @@
 from src.dados.ioperacao_dados import IoperacaoDados
-from typing import Tuple
+from typing import Tuple, TypeVar, Generic
 from abc import abstractmethod
 import os
 
 
-class Arquivo(IoperacaoDados):
+T = TypeVar('T')
+
+
+class Arquivo(IoperacaoDados, Generic[T]):
     def __init__(self):
         self._caminho_base = os.getcwd()
 
