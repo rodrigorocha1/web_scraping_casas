@@ -1,0 +1,45 @@
+@startuml
+
+class WebScrapingPipeline {
+    -tipo_imovel: str
+    -url: str
+    -operacao_dados: IoperacaoDados | Arquivo
+    -servico_web_scraping: WebScrapingSelenium
+    __init__(operacao_dados: IoperacaoDados | Arquivo, url: str, tipo_imovel: str)
+    +rodar_web_scraping()
+}
+
+class IoperacaoDados {
+    <<interface>>
+    +verificar_arquivo(): bool
+    +salvar_dados(dados: list)
+    +atualizar_dados(dados: list)
+}
+
+class Arquivo {
+    +verificar_arquivo(): bool
+    +salvar_dados(dados: list)
+    +atualizar_dados(dados: list)
+}
+
+class ArquivoExcel {
+    +verificar_arquivo(): bool
+    +salvar_dados(dados: list)
+    +atualizar_dados(dados: list)
+}
+
+ArquivoExcel --|> Arquivo
+Arquivo --|> IoperacaoDados
+
+class WebScrapingSelenium {
+    -url: str
+    +abrir_navegador()
+    +extrair_dados(navegador)
+    +executar_paginacao(navegador): bool
+    +fechar_navegador(navegador)
+}
+
+WebScrapingPipeline --> IoperacaoDados
+WebScrapingPipeline --> WebScrapingSelenium
+
+@enduml

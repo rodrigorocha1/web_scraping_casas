@@ -7,13 +7,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import ElementClickInterceptedException
-import logging
-
-
-logging.getLogger("example")
-logging.basicConfig(format="%(levelname)s | %(asctime)s | %(message)s",
-                    level=logging.INFO, filename='test.log', datefmt="%Y-%m-%dT%H:%M:%SZ",)
+from selenium.common.exceptions import (
+    ElementClickInterceptedException,
+    NoSuchElementException,
+    InvalidElementStateException,
+    ElementNotInteractableException
+)
+from src.config.pacote_log import logger
 
 
 class WebScrapingSelenium:
@@ -28,8 +28,11 @@ class WebScrapingSelenium:
         Args:
             navegador (WebDriver): Recebe o navegador
         """
-        WebDriverWait(navegador, 10).until(EC.element_to_be_clickable(
-            (By.ID, 'adopt-accept-all-button'))).click()
+        try:
+            WebDriverWait(navegador, 10).until(EC.element_to_be_clickable(
+                (By.ID, 'adopt-accept-all-button'))).click()
+        except:
+            pass
 
     def abrir_navegador(self) -> WebDriver:
         navegador = webdriver.Chrome(service=self.__servico)
@@ -50,32 +53,45 @@ class WebScrapingSelenium:
         Yields:
             Iterator[Tuple]: Um iteravel
         """
+        try:
 
-        urls = navegador.find_elements(
-            By.CLASS_NAME, 'property-card__content-link')
+            urls = navegador.find_elements(
+                By.CLASS_NAME, 'property-card__content-link')
 
-        nome_apartamentos = navegador.find_elements(
-            By.CLASS_NAME, 'property-card__title')
+            nome_apartamentos = navegador.find_elements(
+                By.CLASS_NAME, 'property-card__title')
 
-        precos = navegador.find_elements(
-            By.CLASS_NAME, 'js-property-card__price-small')
+            precos = navegador.find_elements(
+                By.CLASS_NAME, 'js-property-card__price-small')
 
-        enderecos_apartamentos = navegador.find_elements(
-            By.CLASS_NAME, 'property-card__address')
+            enderecos_apartamentos = navegador.find_elements(
+                By.CLASS_NAME, 'property-card__address')
 
-        metragems = navegador.find_elements(
-            By.CLASS_NAME, 'js-property-card-detail-area')
+            metragems = navegador.find_elements(
+                By.CLASS_NAME, 'js-property-card-detail-area')
 
-        quartos = navegador.find_elements(
-            By.CLASS_NAME, 'js-property-detail-rooms')
+            quartos = navegador.find_elements(
+                By.CLASS_NAME, 'js-property-detail-rooms')
 
-        banheiros = navegador.find_elements(
-            By.CLASS_NAME, 'js-property-detail-bathroom')
+            banheiros = navegador.find_elements(
+                By.CLASS_NAME, 'js-property-detail-bathroom')
 
-        garagens = navegador.find_elements(
-            By.CLASS_NAME, 'js-property-detail-garages')
+            garagens = navegador.find_elements(
+                By.CLASS_NAME, 'js-property-detail-garages')
 
-        return zip(urls, nome_apartamentos, precos, enderecos_apartamentos, metragems, quartos, banheiros, garagens)
+            return zip(urls, nome_apartamentos, precos, enderecos_apartamentos, metragems, quartos, banheiros, garagens)
+        except NoSuchElementException as msg:
+            logger.error(f'Não encontrou elemento: {msg} ')
+            exit(1)
+        except ElementNotInteractableException:
+            logger.error('Elemento não pode ser interagido')
+            exit(1)
+        except InvalidElementStateException:
+            logger.error('Falha na operação de enviar teclas')
+            exit(1)
+        except Exception:
+            logger.error('Falha Geral')
+            exit(1)
 
     def executar_paginacao(self, navegador: WebDriver) -> bool:
         """Executar a páginação
@@ -90,10 +106,9 @@ class WebScrapingSelenium:
             navegador.find_element(
                 By.XPATH,  '//*[@id="js-site-main"]/div[2]/div[1]/section/div[2]/div[2]/div/ul/li[9]/button').click()
             return True
-        except ElementClickInterceptedException:
-            return False
+
         except Exception as e:
-            logging.critical(f"A critical message {e}")
+            return False
 
     def fechar_navegador(self, navegador: WebDriver):
         """Método para fechar o navegador

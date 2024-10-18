@@ -86,3 +86,49 @@ INFO | 2024-10-15T23:10:12Z | ====== WebDriver manager ======
 INFO | 2024-10-15T23:10:12Z | Get LATEST chromedriver version for google-chrome
 INFO | 2024-10-15T23:10:13Z | Get LATEST chromedriver version for google-chrome
 INFO | 2024-10-15T23:10:13Z | Driver [/home/rodrigo/.wdm/drivers/chromedriver/linux64/130.0.6723.58/chromedriver-linux64/chromedriver] found in cache
+INFO | 2024-10-15T23:14:56Z | ====== WebDriver manager ======
+INFO | 2024-10-15T23:14:56Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-15T23:14:56Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-15T23:14:56Z | Driver [/home/rodrigo/.wdm/drivers/chromedriver/linux64/130.0.6723.58/chromedriver-linux64/chromedriver] found in cache
+INFO | 2024-10-15T23:15:31Z | ====== WebDriver manager ======
+INFO | 2024-10-15T23:15:31Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-15T23:15:32Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-15T23:15:32Z | Driver [/home/rodrigo/.wdm/drivers/chromedriver/linux64/130.0.6723.58/chromedriver-linux64/chromedriver] found in cache
+INFO | 2024-10-15T23:17:53Z | ====== WebDriver manager ======
+INFO | 2024-10-15T23:17:53Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-15T23:17:53Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-15T23:17:53Z | Driver [/home/rodrigo/.wdm/drivers/chromedriver/linux64/130.0.6723.58/chromedriver-linux64/chromedriver] found in cache
+INFO | 2024-10-15T23:18:29Z | ====== WebDriver manager ======
+INFO | 2024-10-15T23:18:30Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-15T23:18:30Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-15T23:18:30Z | Driver [/home/rodrigo/.wdm/drivers/chromedriver/linux64/130.0.6723.58/chromedriver-linux64/chromedriver] found in cache
+INFO | 2024-10-15T23:26:05Z | ====== WebDriver manager ======
+INFO | 2024-10-15T23:26:05Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-15T23:26:05Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-15T23:26:05Z | Driver [/home/rodrigo/.wdm/drivers/chromedriver/linux64/130.0.6723.58/chromedriver-linux64/chromedriver] found in cache
+INFO | 2024-10-15T23:28:00Z | ====== WebDriver manager ======
+INFO | 2024-10-15T23:28:00Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-15T23:28:00Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-15T23:28:01Z | Driver [/home/rodrigo/.wdm/drivers/chromedriver/linux64/130.0.6723.58/chromedriver-linux64/chromedriver] found in cache
+INFO | 2024-10-18T19:25:48Z | ====== WebDriver manager ======
+INFO | 2024-10-18T19:25:48Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-18T19:25:48Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-18T19:25:48Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-18T19:25:49Z | WebDriver version 130.0.6723.58 selected
+INFO | 2024-10-18T19:25:49Z | Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/130.0.6723.58/linux64/chromedriver-linux64.zip
+INFO | 2024-10-18T19:25:49Z | About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/130.0.6723.58/linux64/chromedriver-linux64.zip
+INFO | 2024-10-18T19:25:49Z | Driver downloading response is 200
+INFO | 2024-10-18T19:25:51Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-18T19:25:52Z | Driver has been saved in cache [/home/rodrigo/.wdm/drivers/chromedriver/linux64/130.0.6723.58]
+INFO | 2024-10-18T19:26:31Z | ====== WebDriver manager ======
+INFO | 2024-10-18T19:26:31Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-18T19:26:31Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-18T19:26:31Z | Driver [/home/rodrigo/.wdm/drivers/chromedriver/linux64/130.0.6723.58/chromedriver-linux64/chromedriver] found in cache
+INFO | 2024-10-18T19:27:03Z | ====== WebDriver manager ======
+INFO | 2024-10-18T19:27:03Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-18T19:27:03Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-18T19:27:03Z | Driver [/home/rodrigo/.wdm/drivers/chromedriver/linux64/130.0.6723.58/chromedriver-linux64/chromedriver] found in cache
+INFO | 2024-10-18T19:27:45Z | ====== WebDriver manager ======
+INFO | 2024-10-18T19:27:45Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-18T19:27:45Z | Get LATEST chromedriver version for google-chrome
+INFO | 2024-10-18T19:27:46Z | Driver [/home/rodrigo/.wdm/drivers/chromedriver/linux64/130.0.6723.58/chromedriver-linux64/chromedriver] found in cache

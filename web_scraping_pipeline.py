@@ -47,8 +47,17 @@ class WebScrapingPipeline:
 
 
 if __name__ == '__main__':
-    tipo_imovel = 'apartamento'
-    url = 'https://www.vivareal.com.br/venda/sp/ribeirao-preto/apartamento_residencial/#onde=,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,city,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,-21.169402,-47.811086,&itl_id=1000183&itl_name=vivareal_-_botao-cta_buscar_to_vivareal_resultado-pesquisa'
-    wsp = WebScrapingPipeline(
-        operacao_dados=ArquivoExcel(nome_aba=tipo_imovel, nome_arquivo='dados_imoveis.xlsx', nome_pasta_amarzenamento='pasta_excel'), tipo_imovel=tipo_imovel, url=url)
-    wsp.rodar_web_scraping()
+
+    tipos_dados = [
+        ('apartamento', 'https://www.vivareal.com.br/venda/sp/ribeirao-preto/apartamento_residencial/#onde=,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,city,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,-21.169402,-47.811086,&itl_id=1000183&itl_name=vivareal_-_botao-cta_buscar_to_vivareal_resultado-pesquisa'),
+        ('casa', 'https://www.vivareal.com.br/venda/sp/ribeirao-preto/casa_residencial/#onde=,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,city,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,-21.169402,-47.811086,&itl_id=1000183&itl_name=vivareal_-_botao-cta_buscar_to_vivareal_resultado-pesquisa')
+    ]
+
+    for dados in tipos_dados:
+
+        tipo_imovel = dados[0]
+        url = dados[1]
+
+        wsp = WebScrapingPipeline(
+            operacao_dados=ArquivoExcel(nome_aba=tipo_imovel, nome_arquivo='dados_imoveis.xlsx', nome_pasta_amarzenamento='pasta_excel'), tipo_imovel=tipo_imovel, url=url)
+        wsp.rodar_web_scraping()
