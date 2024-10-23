@@ -2,8 +2,10 @@ from src.dados.ioperacao_dados import IoperacaoDados
 from src.dados.arquivo import Arquivo
 from src.dados.arquivo_excel import ArquivoExcel
 from src.service.servico_selenium import WebScrapingSelenium
+import os
 from time import sleep
 from datetime import datetime
+from src.config.pacote_log import logger
 
 
 class WebScrapingPipeline:
@@ -14,12 +16,15 @@ class WebScrapingPipeline:
         self.__servico_web_scraping = WebScrapingSelenium(url=self.__url)
 
     def rodar_web_scraping(self):
+        logger.info('Abrindo navegador')
         navegador = self.__servico_web_scraping.abrir_navegador()
+
         flag_loop = True
-        i = 1
+        i = 224
         while flag_loop:
 
             sleep(4)
+            logger.info('Obter dados e Salvando dados')
             for dados in self.__servico_web_scraping.extrair_dados(navegador=navegador):
                 dado = [{
                     'url': dados[0].get_attribute('href'),
@@ -35,6 +40,7 @@ class WebScrapingPipeline:
                     'data_hora_coleta': datetime.now().strftime("%d-%m-%Y %H:%M:%S")
 
                 }]
+
                 if not self.__operacao_dados.verificar_arquivo():
                     self.__operacao_dados.salvar_dados(dados=dado)
                 else:
@@ -44,20 +50,21 @@ class WebScrapingPipeline:
                 navegador=navegador)
             i += 1
         self.__servico_web_scraping.fechar_navegador(navegador=navegador)
+        os.system('cls' if os.name == 'nt' else 'clear')
 
 
 if __name__ == '__main__':
 
     tipos_dados = [
-        ('apartamento', 'https://www.vivareal.com.br/venda/sp/ribeirao-preto/apartamento_residencial/#onde=,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,city,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,-21.169402,-47.811086,&itl_id=1000183&itl_name=vivareal_-_botao-cta_buscar_to_vivareal_resultado-pesquisa'),
-        ('casa', 'https://www.vivareal.com.br/venda/sp/ribeirao-preto/casa_residencial/#onde=,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,city,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,-21.169402,-47.811086,&itl_id=1000183&itl_name=vivareal_-_botao-cta_buscar_to_vivareal_resultado-pesquisa')
+        # ('apartamento', 'https://www.vivareal.com.br/venda/sp/ribeirao-preto/apartamento_residencial/?pagina=273#onde=Brasil,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,,,'),
+        ('casa', 'https://www.vivareal.com.br/venda/sp/ribeirao-preto/casa_residencial/?pagina=224#onde=Brasil,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,,,')
     ]
 
     for dados in tipos_dados:
 
         tipo_imovel = dados[0]
         url = dados[1]
-
+        logger.info(f'Obtendo dados {tipo_imovel}')
         wsp = WebScrapingPipeline(
-            operacao_dados=ArquivoExcel(nome_aba=tipo_imovel, nome_arquivo='dados_imoveis.xlsx', nome_pasta_amarzenamento='pasta_excel'), tipo_imovel=tipo_imovel, url=url)
+            operacao_dados=ArquivoExcel(nome_aba=tipo_imovel, nome_arquivo=f'dados_imoveis.xlsx', nome_pasta_amarzenamento='pasta_excel'), tipo_imovel=tipo_imovel, url=url)
         wsp.rodar_web_scraping()
