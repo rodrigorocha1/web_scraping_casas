@@ -1,0 +1,36 @@
+Apartamentos: Jardim Botânico, Centro, Nova Aliança, Jardim Olhos D Agua, Sumarezinho e Condominio Mirante Sul	
+casas: Campos Eliseos, Ipiranga, Ribeirânia, Planalto Verde I, Vila Tibério, Sumarezinho
+
+
+1. Análise Descritiva:
+
+Calcule medidas de resumo (média, mediana, desvio padrão, quartis) para variáveis numéricas como precos, metragems, quartos, banheiros, e garagens, para entender a distribuição e as características gerais dos imóveis.
+Crie tabelas de frequência e gráficos de barras para variáveis categóricas como tipo_imovel e bairro, para identificar os tipos de imóveis e bairros mais comuns.
+2. Correlação e Regressão:
+
+Investigue a correlação entre as variáveis numéricas, especialmente entre precos e outras variáveis como metragems e quartos, para entender quais fatores mais influenciam o preço de um imóvel.
+Crie um modelo de regressão linear para prever o preco de um imóvel com base em suas características, como metragem, quartos, banheiros, garagens, tipo_imovel e bairro.
+3. Análise de Variância (ANOVA):
+
+Realize um teste ANOVA para comparar as médias de precos para diferentes categorias de tipo_imovel e bairro, para determinar se o tipo de imóvel ou o bairro têm um impacto significativo no preço.
+4. Teste de Hipóteses:
+
+Formule e teste hipóteses sobre os dados, como:
+Hipótese nula: Não há diferença significativa entre o preço médio de casas e apartamentos.
+Hipótese alternativa: O preço médio de casas é significativamente diferente do preço médio de apartamentos.
+5. Visualização de Dados:
+
+Crie histogramas para visualizar a distribuição de variáveis numéricas, como precos e metragem.
+Crie gráficos de dispersão para visualizar a relação entre duas variáveis, como precos e metragem.
+Crie boxplots para comparar a distribuição de precos entre diferentes categorias, como tipo_imovel e bairro.
+Crie mapas de calor para visualizar a matriz de correlação entre as variáveis.
+6. Análise de Séries Temporais (se houver dados sobre a data de venda dos imóveis):
+
+Analise as tendências de preços ao longo do tempo.
+Identifique sazonalidades nas vendas de imóveis.
+7. Clusterização:
+
+Agrupe os imóveis com base em suas características, para identificar diferentes segmentos de mercado.
+8. Técnicas de Machine Learning:
+
+Utilize algoritmos de aprendizado de máquina, como árvores de decisão, florestas aleatórias ou redes neurais, para construir modelos preditivos mais complexos para o preço dos imóveis.	
