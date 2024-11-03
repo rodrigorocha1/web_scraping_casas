@@ -20,7 +20,7 @@ class WebScrapingPipeline:
         navegador = self.__servico_web_scraping.abrir_navegador()
 
         flag_loop = True
-        i = 224
+        i = 0
         while flag_loop:
 
             sleep(4)
@@ -49,6 +49,8 @@ class WebScrapingPipeline:
             flag_loop = self.__servico_web_scraping.executar_paginacao(
                 navegador=navegador)
             i += 1
+            if i == 3:
+                break
         self.__servico_web_scraping.fechar_navegador(navegador=navegador)
         os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -56,8 +58,8 @@ class WebScrapingPipeline:
 if __name__ == '__main__':
 
     tipos_dados = [
-        # ('apartamento', 'https://www.vivareal.com.br/venda/sp/ribeirao-preto/apartamento_residencial/?pagina=273#onde=Brasil,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,,,'),
-        ('casa', 'https://www.vivareal.com.br/venda/sp/ribeirao-preto/casa_residencial/?pagina=224#onde=Brasil,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,,,')
+        ('apartamento', 'https://www.vivareal.com.br/venda/sp/ribeirao-preto/apartamento_residencial/#onde=,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,city,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,-21.169402,-47.811086,&itl_id=1000183&itl_name=vivareal_-_botao-cta_buscar_to_vivareal_resultado-pesquisa'),
+        ('casa', 'https://www.vivareal.com.br/venda/sp/ribeirao-preto/casa_residencial/#onde=Brasil,S%C3%A3o%20Paulo,Ribeir%C3%A3o%20Preto,,,,,,BR%3ESao%20Paulo%3ENULL%3ERibeirao%20Preto,,,')
     ]
 
     for dados in tipos_dados:
@@ -66,5 +68,5 @@ if __name__ == '__main__':
         url = dados[1]
         logger.info(f'Obtendo dados {tipo_imovel}')
         wsp = WebScrapingPipeline(
-            operacao_dados=ArquivoExcel(nome_aba=tipo_imovel, nome_arquivo=f'dados_imoveis.xlsx', nome_pasta_amarzenamento='pasta_excel'), tipo_imovel=tipo_imovel, url=url)
+            operacao_dados=ArquivoExcel(nome_aba=tipo_imovel, nome_arquivo=f'dados_imoveis_teste.xlsx', nome_pasta_amarzenamento='pasta_excel'), tipo_imovel=tipo_imovel, url=url)
         wsp.rodar_web_scraping()

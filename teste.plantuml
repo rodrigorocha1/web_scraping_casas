@@ -1,8 +1,10 @@
 @startuml
 
 package main {
-    left to right direction
+    
     package src {
+       
+
         package dados {
             interface IOpeacaoDados {
                 void {abstract} salvar_dados(dados: Tuple)
@@ -22,7 +24,7 @@ package main {
                 + salvar_dados(dados: List[Dict[str, Union[str, int]]]) : void
                 + atualizar_dados(dados: List[Dict[str, Union[str, int]]]) : void
             }
-            IOpeacaoDados <|-- Arquivo 
+            IOpeacaoDados <|.. Arquivo 
             Arquivo <|-- ArquivoExcel
 
         }
@@ -40,7 +42,18 @@ package main {
 
         
         }
+        
+
+
     }
+    class WebScrapingPipeline {
+            ~ tipo_imovel
+            ~ url
+            + rodar_web_scraping()
+        }
+      
+        WebScrapingPipeline "1" <-- "usa" "WebScrapingSelenium" : servico_web_scraping 
+        WebScrapingPipeline "1" <-- "usa" "IOpeacaoDados" : operacao_dados
 }
 
 @enduml

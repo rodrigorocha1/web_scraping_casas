@@ -5,7 +5,6 @@ class WebScrapingPipeline {
     -url: str
     -operacao_dados: IoperacaoDados | Arquivo
     -servico_web_scraping: WebScrapingSelenium
-    __init__(operacao_dados: IoperacaoDados | Arquivo, url: str, tipo_imovel: str)
     +rodar_web_scraping()
 }
 
