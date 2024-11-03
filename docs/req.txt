@@ -34,3 +34,11 @@ Agrupe os imóveis com base em suas características, para identificar diferente
 8. Técnicas de Machine Learning:
 
 Utilize algoritmos de aprendizado de máquina, como árvores de decisão, florestas aleatórias ou redes neurais, para construir modelos preditivos mais complexos para o preço dos imóveis.	
+
+
+
+
+#### https://gemini.google.com/app/c2558273fcb5e1bf chatgp
+
+
+https://chatgpt.com/c/67219965-3b50-800e-8ac2-6ec99315ba40

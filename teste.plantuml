@@ -1,45 +1,46 @@
 @startuml
 
-class WebScrapingPipeline {
-    -tipo_imovel: str
-    -url: str
-    -operacao_dados: IoperacaoDados | Arquivo
-    -servico_web_scraping: WebScrapingSelenium
-    __init__(operacao_dados: IoperacaoDados | Arquivo, url: str, tipo_imovel: str)
-    +rodar_web_scraping()
+package main {
+    left to right direction
+    package src {
+        package dados {
+            interface IOpeacaoDados {
+                void {abstract} salvar_dados(dados: Tuple)
+                void {abstract} atualizar_dados(dados: Tuple)
+            }
+            class Arquivo<T> {
+                # String caminho_base
+                # String caminho_arquivo
+                {abstract} +salvar_dados(dados: Tuple)
+                {abstract} +atualizar_dados(dados: Tuple)
+                +verificar_arquivo(): bool
+            }
+            class ArquivoExcel {
+                - WorkBook planilha
+                ~ String nome_aba 
+                ~ criar_cabecalho(dados: List[Dict[str, Union[str, int]]], aba: worksheet) : List[str]
+                + salvar_dados(dados: List[Dict[str, Union[str, int]]]) : void
+                + atualizar_dados(dados: List[Dict[str, Union[str, int]]]) : void
+            }
+            IOpeacaoDados <|-- Arquivo 
+            Arquivo <|-- ArquivoExcel
+
+        }
+
+        package service {
+            class WebScrapingSelenium {
+                - url: str
+                - servico: Service
+                + abrir_navegador() : WebDriver
+                + extrair_dados(navegador: WebDriver) : Iterator<Tuple[WebElement]>
+                + executar_paginacao(navegador: WebDriver) : bool
+                + fechar_navegador(navegador: WebDriver)
+                - clicar_cookie(navegador: WebDriver)
+            }
+
+        
+        }
+    }
 }
-
-class IoperacaoDados {
-    <<interface>>
-    +verificar_arquivo(): bool
-    +salvar_dados(dados: list)
-    +atualizar_dados(dados: list)
-}
-
-class Arquivo {
-    +verificar_arquivo(): bool
-    +salvar_dados(dados: list)
-    +atualizar_dados(dados: list)
-}
-
-class ArquivoExcel {
-    +verificar_arquivo(): bool
-    +salvar_dados(dados: list)
-    +atualizar_dados(dados: list)
-}
-
-ArquivoExcel --|> Arquivo
-Arquivo --|> IoperacaoDados
-
-class WebScrapingSelenium {
-    -url: str
-    +abrir_navegador()
-    +extrair_dados(navegador)
-    +executar_paginacao(navegador): bool
-    +fechar_navegador(navegador)
-}
-
-WebScrapingPipeline --> IoperacaoDados
-WebScrapingPipeline --> WebScrapingSelenium
 
 @enduml
